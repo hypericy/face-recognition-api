@@ -28,6 +28,7 @@ const handleRegister = (pool,bcrypt)=>(req,res) => {
         // transaction 
         client.query('BEGIN')
         .then(()=>{
+            console.log(hashed_password);
             const queryInsertLogin = `INSERT INTO login(hash, email)
             VALUES ('${hashed_password}', '${email}') RETURNING email`;
             return client.query(queryInsertLogin);
