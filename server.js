@@ -32,7 +32,7 @@ const pool = new Pool({
 
 
 app.get('/',(req,res)=>{
-    //res.json(database.users);
+    res.json('It is working');
 })
 
 app.post('/signin',handleSignin(pool , bcrypt));
