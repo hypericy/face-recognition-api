@@ -8,7 +8,9 @@ const handleRegister = (pool,bcrypt)=>(req,res) => {
     bcrypt.hash(password, saltRounds, function(err, hash) {
         // Store hash in your password DB.
         hashed_password = hash;
-        console.log(err);
+        console.log('err',err);
+        console.log('hash',hash);
+        console.log('hashed_password' , hashed_password);
     });
     pool.connect((err,client, done) =>{
         // func for error
