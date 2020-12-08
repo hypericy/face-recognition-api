@@ -2,7 +2,6 @@ import express from 'express'
 import cors from 'cors'
 import pg from 'pg'
 import bcrypt from 'bcrypt'
-import path from 'path'
 import {handleRegister} from './controllers/register.js'
 import {handleSignin} from './controllers/signin.js'
 import {handleApiCall, handleImage} from './controllers/image.js'
@@ -18,11 +17,10 @@ app.use(cors());
 //database 
 const Pool = pg.Pool;
 const pool = new Pool({
-    user: 'postgres',
-    host: '127.0.0.1',
-    database: 'face',
-    password: '1234',
-    port: 5432,
+    connectionString: process.env.DATABASE_URL,
+    ssl: {
+      rejectUnauthorized: false
+    }
   })
 
 // pool.query('select * from users')
@@ -32,7 +30,7 @@ const pool = new Pool({
 
 
 app.get('/',(req,res)=>{
-    res.json('It is working');
+    res.send('It is working');
 })
 
 app.post('/signin',handleSignin(pool , bcrypt));
