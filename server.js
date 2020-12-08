@@ -41,6 +41,6 @@ app.post('/register', handleRegister(pool,bcrypt));
 app.put('/image',handleImage(pool));
 app.post('/imageUrl',handleApiCall)
 
-app.listen(3000,()=>{
+app.listen(process.env.PORT || 3000,()=>{
     console.log('app is running');
 })
